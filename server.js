@@ -18,7 +18,9 @@ app.get('/hello', (req, res) => {
   res.render('pages/index');
 });
 
-
+app.get('/searches/new', (req, res) => {
+  res.render('pages/searches/new');
+});
 
 // start the app
 app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));
