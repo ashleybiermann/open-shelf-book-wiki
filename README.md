@@ -17,6 +17,10 @@ A short description of the motivation behind the creation and maintenance of the
 Provide code examples and explanations of how to get the project.
 
 ## Dependencies
+- "dotenv": "^8.2.0",
+- "ejs": "^3.1.3",
+- "express": "^4.17.1",
+- "superagent": "^5.2.2"
 
 ## API Reference
 
@@ -49,9 +53,9 @@ ________________________________________________________
 
 Number and name of feature: Set up server
 
-Estimate of time needed to complete: 60 minutes
+Estimate of time needed to complete: 120 minutes
 
-Start time: 1:30 - 1:55
+Start time: 1:30 - 1:55; 3:10 -
 
 Finish time: _____
 
