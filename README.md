@@ -57,6 +57,17 @@ Estimate of time needed to complete: 120 minutes
 
 Start time: 1:30 - 1:55; 3:10 -
 
+Finish time: 4:20p
+
+Actual time needed to complete: 95 minutes
+________________________________________________________
+Number and name of feature: Google API
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 4:25p
+
 Finish time: _____
 
 Actual time needed to complete: _____
+________________________________________________________
