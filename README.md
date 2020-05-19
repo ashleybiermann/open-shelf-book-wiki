@@ -87,6 +87,17 @@ Estimate of time needed to complete: 45 minutes
 
 Start time: 11:10p
 
+Finish time: 11:25pm
+
+Actual time needed to complete: 15 minutes
+________________________________________________________
+Number and name of feature: clean UI experieces
+
+Estimate of time needed to complete: 80 minutes
+
+Start time: 11:40p - 12:30a, 
+
 Finish time: _____
 
 Actual time needed to complete: _____
+________________________________________________________

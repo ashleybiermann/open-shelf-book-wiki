@@ -42,7 +42,8 @@ function searchBook(req, res) {
   } else if (type === 'title') {
     q+= `intitle:${keyword}`;
   } else {
-    res.send({message: 'please choose title or author'});
+    // message is variable and can be changed... this could redirect to error page, but this seems more useful. TODO: Add a timeout and then redirect to original page ... /searches/new
+    res.send({message: 'please go back and choose title or author'});
   }
 
   superagent.get(url)
