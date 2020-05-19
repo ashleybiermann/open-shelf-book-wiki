@@ -71,13 +71,22 @@ Finish time: 4:45p
 
 Actual time needed to complete: 20 minutes
 ________________________________________________________
-Number and name of feature: 
+Number and name of feature: Browse results
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 90 minutes
 
-Start time: 4:50p
+Start time: 4:50p - 6:00p, 8:00p
+
+Finish time: 9:00 pm
+
+Actual time needed to complete: 130 minutes
+________________________________________________________
+Number and name of feature: Send to error page
+
+Estimate of time needed to complete: 45 minutes
+
+Start time: 11:10p
 
 Finish time: _____
 
 Actual time needed to complete: _____
-________________________________________________________

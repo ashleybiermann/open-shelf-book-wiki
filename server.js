@@ -27,7 +27,6 @@ app.get('/hello', (req, res) => {
 });
 
 app.get('/searches/new', (req, res) => {
-  console.log('hello from /searches/new');
   res.render('pages/searches/new');
 });
 
@@ -35,7 +34,6 @@ app.post('/searches/new', searchBook);
 
 function searchBook(req, res) {
   const url = 'https://www.googleapis.com/books/v1/volumes';
-  console.log(req.body.search);
   const {keyword, type} = req.body.search;
   let q = '';
 
@@ -56,9 +54,9 @@ function searchBook(req, res) {
       });
       //  where you're going to send it, what you're going to call it : what it's going to contain
       res.render('pages/searches/show', {'books': bookArr});
-      console.log(bookArr);
     })
     .catch(error => {
+      res.render('pages/error', {'error': error});
       console.error('error from Google Books API ', error);
     });
 }
