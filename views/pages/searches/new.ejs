@@ -3,27 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/icons.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/modules.css">
   <title>New Search</title>
 </head>
 <body>
-  <h1>New Search page</h1>
+  <nav>Best Books!</nav>
+
+  <h1>Search by Title or Author</h1>
   
   <form action="/searches/new" method="POST">
     <fieldset>
-      <legend>Find a Book!</legend>
-      <label for="searchForABook">Search for a Book</label>
+      <legend>Enter a title or author</legend>
+      <label for="searchForABook"></label>
       <input type="text" name="search[keyword]">
 
-      <label for="searchByAuthor">Search by Author</label>
-      <input type="radio" name="search[type]" value="author">
-
-      <label for="searchByTitle">Search by Title</label>
+      <label for="searchByTitle">Title</label>
       <input type="radio" name="search[type]" value="title">
 
-      <input type="submit">
+      <label for="searchByAuthor">Author</label>
+      <input type="radio" name="search[type]" value="author">
+
+      <button type="submit">Search the Google Books API</button>
 
     </fieldset>
   </form>
+
+  <footer>dot images go here</footer>
 
 </body>
 </html>

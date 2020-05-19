@@ -1,0 +1,55 @@
+@media only screen and (max-width: 480px) {
+  * {
+    text-align: center;
+  }
+  body {
+    display: grid;
+    grid-template-columns: 35px 1fr 35px;
+    grid-template-rows: 50px 45px 1fr 45px;
+    width: auto;
+    margin: 0 auto;
+    overflow: auto;
+  }
+
+  nav {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  h1 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  form {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  fieldset {
+    line-height: 100px;
+    justify-items: center;
+  }
+  
+  legend {
+    line-height: 50px;
+  }
+  
+  button {
+    line-height: 40px;
+    align-self: center;
+  }
+
+  footer {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+}
