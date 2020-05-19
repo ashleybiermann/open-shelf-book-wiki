@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Results</title>
+</head>
+<body>
+  <h3>Your personalized book results</h3>
+  <ul>
+    <% books.forEach(current => { %>
+      <li>
+        <img src=<%=current.image %> alt="">
+        <h2><%=current.title %></h2>
+        <h3><%=current.author %></h3>
+        <p><%=current.description %></p>
+      </li>
+    <% }) %>
+  </ul>
+  
+</body>
+</html>
+
+</li>
+      <li></li>
+      <li></li>
+      <li>

@@ -8,18 +8,22 @@
 <body>
   <h1>New Search page</h1>
   
-  <form action="/new"></form>
+  <form action="/searches/new" method="POST">
     <fieldset>
       <legend>Find a Book!</legend>
-      <label for="searchByBook">Search by Title</label>
-      <input type="text" name="bookTitle">
+      <label for="searchForABook">Search for a Book</label>
+      <input type="text" name="search[keyword]">
 
       <label for="searchByAuthor">Search by Author</label>
-      <input type="text" name="authorName">
+      <input type="radio" name="search[type]" value="author">
+
+      <label for="searchByTitle">Search by Title</label>
+      <input type="radio" name="search[type]" value="title">
 
       <input type="submit">
 
     </fieldset>
+  </form>
 
 </body>
 </html>
