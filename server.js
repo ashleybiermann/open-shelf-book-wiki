@@ -18,6 +18,12 @@ app.set('view engine', 'ejs'); // render === build a page in express
 function Book(obj) {
   this.title = obj.title ? obj.title : 'Book Title Unknown';
   this.author = obj.authors ? obj.authors : 'Author Unknown';
+
+  if (obj.imageLinks.smallThumbnail) {
+    if (obj.imageLinks.smallThumbnail[4] === ':') {
+      obj.imageLinks.smallThumbnail = obj.imageLinks.smallThumbnail.split(':').join('s:');
+    }
+  }
   this.image = obj.imageLinks.smallThumbnail ? obj.imageLinks.smallThumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
   this.description = obj.description ? obj.description : 'No description provided';
 }
