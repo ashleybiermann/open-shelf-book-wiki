@@ -101,3 +101,14 @@ Finish time: _____
 
 Actual time needed to complete: _____
 ________________________________________________________
+
+Number and name of feature: Homepage 
+
+Estimate of time needed to complete: 15 minutes
+
+Start time: 3:10p
+
+Finish time: 3:15p
+
+Actual time needed to complete: 5 mins
+________________________________________________________

@@ -22,7 +22,7 @@ function Book(obj) {
   this.description = obj.description ? obj.description : 'No description provided';
 }
 
-app.get('/hello', (req, res) => {
+app.get('/', (req, res) => {
   res.render('pages/index');
 });
 
