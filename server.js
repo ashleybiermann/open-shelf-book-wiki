@@ -20,6 +20,15 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', console.error);
 client.connect();
 
+//routes
+app.get('/', retreiveBooksFromDB);
+app.get('/searches/new', (req, res) => {
+  res.render('pages/searches/new');
+});
+app.post('/searches/new', searchBook);
+app.get('/books/:id', retrieveSingleBook);
+app.post('/books', saveBookToDB);
+
 // constructors
 function Book(obj) {
   this.title = obj.title ? obj.title : 'Book Title Unknown';
@@ -84,26 +93,23 @@ function retreiveBooksFromDB(req, res){
 }
 
 function saveBookToDB(req, res) {
-  const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6)'; //replace INSERT INTO booktable (with things from req.body)
-  console.log(req.body);
-  res.render('pages/books/show', {'savedBooks': req.body}); //TODO: This object { } will need some work
+  const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6)'; //array with info from req.body
+  const oneBookInfo = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
+  client.query(saveToSql, oneBookInfo)
+    .then (
+      res.render('pages/books/show', {'savedBooks': req.body})
+      //TODO: go over the pages/books/show and give the req.body info some place to live, like in a table
+    )
+    .catch(error => {
+      res.render('pages/error', {'error': error});
+      console.error('error retrieving books from database: ', error);
+    });
+  console.log(oneBookInfo);
 }
 
 function retrieveSingleBook(req, res) {
   //lab 12 card 2
 }
-
-app.get('/', retreiveBooksFromDB);
-
-app.get('/searches/new', (req, res) => {
-  res.render('pages/searches/new');
-});
-app.post('/searches/new', searchBook);
-
-app.get('/books/:id', retrieveSingleBook);
-
-app.post('/books', saveBookToDB);
-
 
 // start the app
 app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));
