@@ -34,16 +34,6 @@ function Book(obj) {
   this.description = obj.description ? obj.description : 'No description provided';
 }
 
-app.get('/', (req, res) => {
-  res.render('pages/index');
-});
-
-app.get('/searches/new', (req, res) => {
-  res.render('pages/searches/new');
-});
-
-app.post('/searches/new', searchBook);
-
 function searchBook(req, res) {
   const url = 'https://www.googleapis.com/books/v1/volumes';
   const {keyword, type} = req.body.search;
@@ -70,9 +60,39 @@ function searchBook(req, res) {
     })
     .catch(error => {
       res.render('pages/error', {'error': error});
-      console.error('error from Google Books API ', error);
+      console.error('error from Google Books API: ', error);
     });
 }
+
+app.get('/', retreiveBooksFromDB);
+
+function retreiveBooksFromDB(req, res){
+  const sqlQuery = 'SELECT * FROM booktable';
+  client.query(sqlQuery)
+    .then(resultFromSql => {
+
+      if (resultFromSql.rowCount > 0) {
+        console.log(resultFromSql.rows);
+        res.render('pages/index', {'booksFromDB': resultFromSql.rows});
+      } else {
+        app.get('/searches/new', (req, res) => {
+          res.render('pages/searches/new');
+        });
+      }
+
+    })
+    .catch(error => {
+      res.render('pages/error', {'error': error});
+      console.error('error retrieving books from database: ', error);
+    });
+}
+
+app.get('/searches/new', (req, res) => {
+  res.render('pages/searches/new');
+});
+
+app.post('/searches/new', searchBook);
+
 
 // start the app
 app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));
