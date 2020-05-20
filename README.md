@@ -128,7 +128,17 @@ Number and name of feature: Display showed books
 
 Estimate of time needed to complete: 180 minutes
 
-Start time: 3:50p
+Start time: 3:50p - 5:50p, 7:30p -
+
+Finish time: 9:00p
+
+Actual time needed to complete: 210 minutes
+________________________________________________________
+Number and name of feature: Single Book Details
+
+Estimate of time needed to complete: 90 minutes
+
+Start time: 10:00p
 
 Finish time: _____
 

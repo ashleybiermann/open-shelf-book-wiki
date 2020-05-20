@@ -10,16 +10,32 @@
   <ul>
     <% books.forEach(current => { %>
       <li>
-        <img src=<%=current.image %> alt="">
+        <img src=<%=current.image %> alt="book cover image">
         <h2><%=current.title %></h2>
         <h3><%=current.author %></h3>
         <p><%=current.description %></p>
         <p>isbn: <%=current.isbn %></p>
+        <p>bookshelf: <%=current.bookshelf %></p>
       </li>
+
+      <form action="/books" method="POST">
+        <fieldset> 
+          <!-- TODO: Why am I only gettin the first part of the value???? -->
+          
+          <input type="hidden" name="author" value=<%=current.author %>>
+          <input type="hidden" name="title" value=<%=current.title %>>
+          <input type="hidden" name="isbn" value=<%=current.isbn %>>
+          <input type="hidden" name="image_url" value=<%=current.image %>>
+          <input type="hidden" name="description" value=<%=current.description %>>
+          <input type="hidden" name="bookshelf" value=<%=current.bookshelf %>>
+
+          <button type="submit">Save to My Collection</button>
+        </fieldset>
+      </form>
+      <% }) %>
       <!-- build form for user to save a book -->
-      <!-- form will references all of the values that are coming from current. Right about this :) Will have input fields for all of this. Value fields = exactly what is right up there. Tie them together with a single submit button that will send it to the backend (server). Server takes the form inputs and turns it into the INSERT statement for sql. app.post('/books'); path. this will be the action="/books " on form. method="post" on server. Call path /books-->
+      <!-- form will reference all of the values that are coming from current. Right above this :) Will have input fields for all of this. Value fields = exactly what is right up there. Tie them together with a single submit button that will send it to the backend (server). Server takes the form inputs and turns it into the INSERT statement for sql. app.post('/books'); path. this will be the action="/books " on form. method="post" on server. Call path /books-->
       <!--  app.post('/books')  ... console.log(req.body); -->
-    <% }) %>
   </ul>
   
 </body>

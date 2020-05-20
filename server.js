@@ -24,7 +24,7 @@ client.connect();
 function Book(obj) {
   this.title = obj.title ? obj.title : 'Book Title Unknown';
   this.author = obj.authors ? obj.authors : 'Author Unknown';
-  this.isbn = obj.industryIdentifiers ? obj.industryIdentifiers[1].identifier : 'error: isbn unknown';
+  this.isbn = obj.industryIdentifiers ? obj.industryIdentifiers[0].identifier : 'error: isbn unknown'; // TODO: What if I want the second ISBN rather than the first?
   if (obj.imageLinks.smallThumbnail) {
     if (obj.imageLinks.smallThumbnail[4] === ':') {
       obj.imageLinks.smallThumbnail = obj.imageLinks.smallThumbnail.split(':').join('s:');
@@ -64,8 +64,6 @@ function searchBook(req, res) {
     });
 }
 
-app.get('/', retreiveBooksFromDB);
-
 function retreiveBooksFromDB(req, res){
   const sqlQuery = 'SELECT * FROM booktable';
   client.query(sqlQuery)
@@ -85,11 +83,26 @@ function retreiveBooksFromDB(req, res){
     });
 }
 
+function saveBookToDB(req, res) {
+  const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6)'; //replace INSERT INTO booktable (with things from req.body)
+  console.log(req.body);
+  res.render('pages/books/show', {'savedBooks': req.body}); //TODO: This object { } will need some work
+}
+
+function retrieveSingleBook(req, res) {
+  //lab 12 card 2
+}
+
+app.get('/', retreiveBooksFromDB);
+
 app.get('/searches/new', (req, res) => {
   res.render('pages/searches/new');
 });
-
 app.post('/searches/new', searchBook);
+
+app.get('/books/:id', retrieveSingleBook);
+
+app.post('/books', saveBookToDB);
 
 
 // start the app
