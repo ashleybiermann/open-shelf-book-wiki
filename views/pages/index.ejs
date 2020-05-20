@@ -14,6 +14,7 @@
 <body>
   <h1>Open Shelf, a book wiki</h1>
 
+  <!-- TODO: need to add a Details thead and a details td -->
   <table>
     <h2>You have <%= booksFromDB.length %> books saved in your library</h2>
     <thead>
@@ -32,13 +33,14 @@
           <td><%= booksFromDB[i].author %></td>
           <td><%= booksFromDB[i].title %></td>
           <td><%= booksFromDB[i].isbn %></td>
-          <td><%= booksFromDB[i].image_url %></td>
+          <!-- added " " to image url -->
+          <td>"<%= booksFromDB[i].image_url %>"</td>
           <td><%= booksFromDB[i].description %></td>
           <td><%= booksFromDB[i].bookshelf %></td>
         </tr>
         <% } %>
     </tbody>
   </table>
-  
+  <!-- note from lab: the above for loop will end up in a partial -->
 </body>
 </html>
