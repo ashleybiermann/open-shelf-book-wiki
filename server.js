@@ -26,6 +26,7 @@ app.get('/searches/new', (req, res) => {
   res.render('pages/searches/new');
 });
 app.post('/searches/new', searchBook);
+
 app.get('/books/:id', retrieveSingleBook);
 app.post('/books', saveBookToDB);
 
@@ -43,6 +44,7 @@ function Book(obj) {
   this.description = obj.description ? obj.description : 'No description provided';
 }
 
+// function declarations
 function searchBook(req, res) {
   const url = 'https://www.googleapis.com/books/v1/volumes';
   const {keyword, type} = req.body.search;
@@ -97,14 +99,13 @@ function saveBookToDB(req, res) {
   const oneBookInfo = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
   client.query(saveToSql, oneBookInfo)
     .then (
-      res.render('pages/books/show', {'savedBooks': req.body})
-      //TODO: go over the pages/books/show and give the req.body info some place to live, like in a table
+      res.render('pages/books/show', {'oneSavedBook': req.body})
     )
     .catch(error => {
       res.render('pages/error', {'error': error});
       console.error('error retrieving books from database: ', error);
     });
-  console.log(oneBookInfo);
+  console.log(req.body);
 }
 
 function retrieveSingleBook(req, res) {
