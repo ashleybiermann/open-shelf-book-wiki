@@ -14,7 +14,11 @@
         <h2><%=current.title %></h2>
         <h3><%=current.author %></h3>
         <p><%=current.description %></p>
+        <p>isbn: <%=current.isbn %></p>
       </li>
+      <!-- build form for user to save a book -->
+      <!-- form will references all of the values that are coming from current. Right about this :) Will have input fields for all of this. Value fields = exactly what is right up there. Tie them together with a single submit button that will send it to the backend (server). Server takes the form inputs and turns it into the INSERT statement for sql. app.post('/books'); path. this will be the action="/books " on form. method="post" on server. Call path /books-->
+      <!--  app.post('/books')  ... console.log(req.body); -->
     <% }) %>
   </ul>
   

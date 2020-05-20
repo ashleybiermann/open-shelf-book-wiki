@@ -4,6 +4,7 @@
 const express = require('express');
 const superagent = require('superagent');
 require('dotenv').config();
+const pg = require('pg');
 
 //global variables / app setup
 const app = express();
@@ -14,17 +15,22 @@ app.use(express.urlencoded({ extended: true })); //middleware to create req.body
 app.use(express.static('./public')); // which frontend files to serve / for the case of forms
 app.set('view engine', 'ejs'); // render === build a page in express
 
+//pg set up
+const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', console.error);
+client.connect();
+
 // constructors
 function Book(obj) {
   this.title = obj.title ? obj.title : 'Book Title Unknown';
   this.author = obj.authors ? obj.authors : 'Author Unknown';
-
+  this.isbn = obj.industryIdentifiers ? obj.industryIdentifiers[1].identifier : 'error: isbn unknown';
   if (obj.imageLinks.smallThumbnail) {
     if (obj.imageLinks.smallThumbnail[4] === ':') {
       obj.imageLinks.smallThumbnail = obj.imageLinks.smallThumbnail.split(':').join('s:');
     }
   }
-  this.image = obj.imageLinks.smallThumbnail ? obj.imageLinks.smallThumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
+  this.image = obj.imageLinks ? obj.imageLinks.smallThumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
   this.description = obj.description ? obj.description : 'No description provided';
 }
 

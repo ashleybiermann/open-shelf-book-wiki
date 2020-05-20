@@ -13,6 +13,26 @@
 </head>
 <body>
   <h1>Open Shelf, a book wiki</h1>
+
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>Author</th>
+      <th>Title</th>
+      <th>ISBN</th>
+      <th>image_url</th>
+      <th>Description</th>
+      <th>Bookshelf</th>
+    </thead>
+  </table>
   
 </body>
 </html>
+
+id SERIAL PRIMARY KEY,
+author VARCHAR(255),
+title VARCHAR(255),
+isbn VARCHAR(255),
+image_url VARCHAR(255),
+description VARCHAR(511),
+bookshelf VARCHAR(255)
