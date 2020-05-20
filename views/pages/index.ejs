@@ -13,6 +13,32 @@
 </head>
 <body>
   <h1>Open Shelf, a book wiki</h1>
+
+  <table>
+    <h2>You have <%= booksFromDB.length %> books saved in your library</h2>
+    <thead>
+      <th>ID</th>
+      <th>Author</th>
+      <th>Title</th>
+      <th>ISBN</th>
+      <th>image_url</th>
+      <th>Description</th>
+      <th>Bookshelf</th>
+    </thead>
+    <tbody>
+      <% for(let i = 0; i < booksFromDB.length; i++) { %>
+       <tr>
+         <td><%= booksFromDB[i].id %></td>
+          <td><%= booksFromDB[i].author %></td>
+          <td><%= booksFromDB[i].title %></td>
+          <td><%= booksFromDB[i].isbn %></td>
+          <td><%= booksFromDB[i].image_url %></td>
+          <td><%= booksFromDB[i].description %></td>
+          <td><%= booksFromDB[i].bookshelf %></td>
+        </tr>
+        <% } %>
+    </tbody>
+  </table>
   
 </body>
 </html>

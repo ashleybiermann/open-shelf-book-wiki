@@ -22,6 +22,17 @@ Provide code examples and explanations of how to get the project.
 - "express": "^4.17.1",
 - "superagent": "^5.2.2"
 
+## Schema
+CREATE TABLE booktable (
+  id SERIAL PRIMARY KEY,
+  author VARCHAR(255),
+  title VARCHAR(255),
+  isbn VARCHAR(255),
+  image_url VARCHAR(255),
+  description VARCHAR(511),
+  bookshelf VARCHAR(255)
+)
+
 ## API Reference
 
 Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
@@ -111,4 +122,15 @@ Start time: 3:10p
 Finish time: 3:15p
 
 Actual time needed to complete: 5 mins
+________________________________________________________
+
+Number and name of feature: Display showed books
+
+Estimate of time needed to complete: 180 minutes
+
+Start time: 3:50p
+
+Finish time: _____
+
+Actual time needed to complete: _____
 ________________________________________________________
