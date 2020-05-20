@@ -75,9 +75,7 @@ function retreiveBooksFromDB(req, res){
         console.log(resultFromSql.rows);
         res.render('pages/index', {'booksFromDB': resultFromSql.rows});
       } else {
-        app.get('/searches/new', (req, res) => {
-          res.render('pages/searches/new');
-        });
+        res.render('pages/searches/new');
       }
 
     })
