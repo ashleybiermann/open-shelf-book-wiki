@@ -97,14 +97,20 @@ function retreiveBooksFromDB(req, res){
 }
 
 function saveBookToDB(req, res) {
+  // TODO: If book already exists in DB, then don't put it in again
   console.log(req.body);
-  const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6)'; //array with info from req.body
+  const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id';
+  //array with info from req.body
+  // TODO: WHY isn't this returing an id???
   const oneBookInfo = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
   client.query(saveToSql, oneBookInfo)
-    .then (resultFromSql => { // result from sql giving rowCount 1 but can't seem to access info in it
-      console.log('result from sql' + resultFromSql);
+    .then (resultFromSql => {
+      console.log('result from sql' + resultFromSql.rowCount);
+      console.log('object.entries: ' + Object.entries(resultFromSql));
       res.render('pages/books/show', {'oneSavedBook': req.body});
+      // return resultFromSql;
     })
+    // .then(resultFromSql);
     .catch(error => {
       res.render('pages/error', {'error': error});
       console.error('error retrieving books from database: ', error);

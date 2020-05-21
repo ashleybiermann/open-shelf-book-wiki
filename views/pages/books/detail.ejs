@@ -11,7 +11,7 @@
   <p>bookshelf: <%=current.bookshelf %></p>
 
   <button id="revealUpdateForm">Update My Books</button>
-<!-- TODO: make this dynamic with < % = current. id % >  -->
+<!-- TODO: make this dynamic with < % = current. id % > ... but it doesn't have an id  -->
   <form id="formToUpdateBook" action="/books/<%= current.id %>/update?_overrideMethod=PUT" method="POST">
     <fieldset> 
       <label for="author">Author</label>
