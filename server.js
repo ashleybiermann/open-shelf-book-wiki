@@ -5,6 +5,7 @@ const express = require('express');
 const superagent = require('superagent');
 require('dotenv').config();
 const pg = require('pg');
+const methodOverride = require('method-override');
 
 //global variables / app setup
 const app = express();
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true })); //middleware to create req.body for PORT from forms
 app.use(express.static('./public')); // which frontend files to serve / for the case of forms
 app.set('view engine', 'ejs'); // render === build a page in express
+app.use(methodOverride('_overrideMethod')); // method override set up
 
 //pg set up
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -26,6 +28,7 @@ app.get('/searches/new', (req, res) => {
   res.render('pages/searches/new');
 });
 app.post('/searches/new', searchBook);
+
 app.get('/books/:id', retrieveSingleBook);
 app.post('/books', saveBookToDB);
 
@@ -43,6 +46,7 @@ function Book(obj) {
   this.description = obj.description ? obj.description : 'No description provided';
 }
 
+// function declarations
 function searchBook(req, res) {
   const url = 'https://www.googleapis.com/books/v1/volumes';
   const {keyword, type} = req.body.search;
@@ -93,18 +97,17 @@ function retreiveBooksFromDB(req, res){
 }
 
 function saveBookToDB(req, res) {
+  console.log(req.body);
   const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6)'; //array with info from req.body
   const oneBookInfo = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
   client.query(saveToSql, oneBookInfo)
     .then (
-      res.render('pages/books/show', {'savedBooks': req.body})
-      //TODO: go over the pages/books/show and give the req.body info some place to live, like in a table
+      res.render('pages/books/show', {'oneSavedBook': req.body})
     )
     .catch(error => {
       res.render('pages/error', {'error': error});
       console.error('error retrieving books from database: ', error);
     });
-  console.log(oneBookInfo);
 }
 
 function retrieveSingleBook(req, res) {
