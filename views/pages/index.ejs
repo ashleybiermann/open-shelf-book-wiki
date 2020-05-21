@@ -33,7 +33,7 @@
           <td><%= booksFromDB[i].author %></td>
           <td><%= booksFromDB[i].title %></td>
           <td><%= booksFromDB[i].isbn %></td>
-          <!-- added " " to image url -->
+          <!-- added " " to image url TODO: Why is image not showing?-->
           <td>"<%= booksFromDB[i].image_url %>"</td>
           <td><%= booksFromDB[i].description %></td>
           <td><%= booksFromDB[i].bookshelf %></td>
@@ -41,6 +41,5 @@
         <% } %>
     </tbody>
   </table>
-  <!-- note from lab: the above for loop will end up in a partial -->
 </body>
 </html>

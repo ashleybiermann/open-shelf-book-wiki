@@ -101,9 +101,10 @@ function saveBookToDB(req, res) {
   const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6)'; //array with info from req.body
   const oneBookInfo = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
   client.query(saveToSql, oneBookInfo)
-    .then (
-      res.render('pages/books/show', {'oneSavedBook': req.body})
-    )
+    .then (resultFromSql => { // result from sql giving rowCount 1 but can't seem to access info in it
+      console.log('result from sql' + resultFromSql);
+      res.render('pages/books/show', {'oneSavedBook': req.body});
+    })
     .catch(error => {
       res.render('pages/error', {'error': error});
       console.error('error retrieving books from database: ', error);

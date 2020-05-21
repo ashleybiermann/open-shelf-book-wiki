@@ -1,12 +1,13 @@
 'use strict';
 console.log('Yoooooo from the app.js');
 
-const buttonToRevealForm = $('#revealUpdateForm');
 
-const formToUpdateBook = $('#formToUpdateBook');
+$('#formToUpdateBook').hide();
 
-formToUpdateBook.style = 'display : none';
 
-buttonToRevealForm.addEventListener('click', () => {
-  formToUpdateBook.style = '';
+$('#revealUpdateForm').click(function() {
+  $('#formToUpdateBook').show();
+  $('#revealUpdateForm').hide();
+  console.log('button was clicked!');
 });
+
