@@ -7,10 +7,13 @@
   <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/layout.css">
-  <title>The Book I Just Saved, only 1 showing</title>
+  <link rel="stylesheet" href="/styles/modules.css">
+  <title>Saved!</title>
 </head>
 <body>
-  <h1>Details</h1>
+  <nav></nav>
+
+  <h1>Saved to Bookshelf!</h1>
   <!-- using partial from /books/detail.ejs file -->
   <!-- ejs , path of partial , variable partial expects, variable sent from server that includes necessary info -->
   <%- include('detail.ejs', {current : oneSavedBook}) %>

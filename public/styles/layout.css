@@ -26,13 +26,32 @@
     grid-row-end: 3;
   }
 
-  p {
+  h3 {
+    grid-area: 3 / 1 / 3 / 4;
+  }
+
+  h4 {
     margin-left: 10px;
     text-align: left;
   }
 
+  p {
+    margin-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    line-height: 18px;
+  }
+
+  table {
+    grid-area: 4 / 1 / 4 / 4;
+  }
+
   ul {
     /* row start / column start / row end / column end */
+    grid-area: 3 / 1 / 4 / 4;
+  }
+
+  section {
     grid-area: 3 / 1 / 4 / 4;
   }
 
