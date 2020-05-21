@@ -11,18 +11,25 @@
       <p>isbn: <%=current.isbn %></p>
       <p>bookshelf: <%=current.bookshelf %></p>
 
-      <form action="/books" method="POST">
+      <button id="update">Update My Books</button>
+<!-- TODO: make this dynamic with < % =  id % >  -->
+      <form id="form" action="/books/:1/update?_overrideMethod=PUT" method="POST">
         <fieldset> 
+          <label for="author">Author</label>
           <input type="text" name="author" value="<%=current.author %>">
-          <input type="hidden" name="title" value="<%=current.title %>">
-          <input type="hidden" name="isbn" value="<%=current.isbn %>">
-          <input type="hidden" name="image_url" value="<%=current.image %>">
-          <input type="hidden" name="description" value="<%=current.description %>">
-          <input type="hidden" name="bookshelf" value="<%=current.bookshelf %>">
-
+          <label for="title">Title</label>
+          <input type="text" name="title" value="<%=current.title %>">
+          <label for="isbn">ISBN</label>
+          <input type="text" name="isbn" value="<%=current.isbn %>">
+          <label for="image_url">Image URL</label>
+          <input type="text" name="image_url" value="<%=current.image %>">
+          <label for="description">Description</label>
+          <input type="text" name="description" value="<%=current.description %>">
+          <label for="bookshelf">Bookshelf</label>
+          <input type="text" name="bookshelf" value="<%=current.bookshelf %>">
           <button type="submit">Update</button>
         </fieldset>
       </form>
-
+<!-- TODO: add script tag here and link to a newly created app.js -->
     </section>
     

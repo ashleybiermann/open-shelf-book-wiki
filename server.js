@@ -5,6 +5,7 @@ const express = require('express');
 const superagent = require('superagent');
 require('dotenv').config();
 const pg = require('pg');
+const methodOverride = require('method-override');
 
 //global variables / app setup
 const app = express();
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true })); //middleware to create req.body for PORT from forms
 app.use(express.static('./public')); // which frontend files to serve / for the case of forms
 app.set('view engine', 'ejs'); // render === build a page in express
+app.use(methodOverride('_overrideMethod')); // method override set up
 
 //pg set up
 const client = new pg.Client(process.env.DATABASE_URL);
