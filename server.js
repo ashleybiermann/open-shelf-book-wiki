@@ -97,6 +97,7 @@ function retreiveBooksFromDB(req, res){
 }
 
 function saveBookToDB(req, res) {
+  console.log(req.body);
   const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6)'; //array with info from req.body
   const oneBookInfo = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
   client.query(saveToSql, oneBookInfo)
@@ -107,7 +108,6 @@ function saveBookToDB(req, res) {
       res.render('pages/error', {'error': error});
       console.error('error retrieving books from database: ', error);
     });
-  console.log(req.body);
 }
 
 function retrieveSingleBook(req, res) {

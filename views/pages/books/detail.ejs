@@ -1,35 +1,35 @@
 <!-- lab 12 card 2: The `detail.ejs` file is a partial file that contains just a `<section>` to render the details of a single book. Think of it as a resuable book component.  -->
 
-
-    <section>
+<section>
       <!-- partial goes in here -->
     <!-- Here is going to display the same type of ejs as in the search/show.ejs, but only 1 book. Going to have a hidden form here that is an edit or update from, almost the same as other search/show page, but with a different method. instead of a button that says save, it lets the user update , see the hidden form (no longer hidden), and can update the info in it. Then, a new button also shows up along with the unhidden form and lets the user submit the form -->
-      <img src="<%=current.image %> alt="book cover image">
-      <h2><%=current.title %></h2>
-      <h3><%=current.author %></h3>
-      <p><%=current.description %></p>
-      <p>isbn: <%=current.isbn %></p>
-      <p>bookshelf: <%=current.bookshelf %></p>
+  <img src="<%=current.image %> alt="book cover image">
+  <h2><%=current.title %></h2>
+  <h3><%=current.author %></h3>
+  <p><%=current.description %></p>
+  <p>isbn: <%=current.isbn %></p>
+  <p>bookshelf: <%=current.bookshelf %></p>
 
-      <button id="update">Update My Books</button>
-<!-- TODO: make this dynamic with < % =  id % >  -->
-      <form id="form" action="/books/:1/update?_overrideMethod=PUT" method="POST">
-        <fieldset> 
-          <label for="author">Author</label>
-          <input type="text" name="author" value="<%=current.author %>">
-          <label for="title">Title</label>
-          <input type="text" name="title" value="<%=current.title %>">
-          <label for="isbn">ISBN</label>
-          <input type="text" name="isbn" value="<%=current.isbn %>">
-          <label for="image_url">Image URL</label>
-          <input type="text" name="image_url" value="<%=current.image %>">
-          <label for="description">Description</label>
-          <input type="text" name="description" value="<%=current.description %>">
-          <label for="bookshelf">Bookshelf</label>
-          <input type="text" name="bookshelf" value="<%=current.bookshelf %>">
-          <button type="submit">Update</button>
-        </fieldset>
-      </form>
-<!-- TODO: add script tag here and link to a newly created app.js -->
-    </section>
+  <button id="revealUpdateForm">Update My Books</button>
+<!-- TODO: make this dynamic with < % = current. id % >  -->
+  <form id="formToUpdateBook" action="/books/:1/update?_overrideMethod=PUT" method="POST">
+    <fieldset> 
+      <label for="author">Author</label>
+      <input type="text" name="author" value="<%=current.author %>">
+      <label for="title">Title</label>
+      <input type="text" name="title" value="<%=current.title %>">
+      <label for="isbn">ISBN</label>
+      <input type="text" name="isbn" value="<%=current.isbn %>">
+      <label for="image_url">Image URL</label>
+      <input type="text" name="image_url" value="<%=current.image_url %>">
+      <label for="description">Description</label>
+      <input type="text" name="description" value="<%=current.description %>">
+      <label for="bookshelf">Bookshelf</label>
+      <input type="text" name="bookshelf" value="<%=current.bookshelf %>">
+      <button type="submit">Update</button>
+    </fieldset>
+  </form>
+  <!-- TODO: Define in the app that I'm using jquery -->
+  <script src="app.js"></script>    
+</section>
     
