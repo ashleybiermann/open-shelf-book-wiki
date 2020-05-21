@@ -12,11 +12,14 @@
   <title>Open Shelf</title>
 </head>
 <body>
-  <h1>Open Shelf, a book wiki</h1>
+
+  <nav><button id="findNewBook">Find a new book</button></nav>
+  <h1>Open Shelf</h1>
+  
 
   <!-- TODO: need to add a Details thead and a details td -->
   <table>
-    <h2>You have <%= booksFromDB.length %> books saved in your library</h2>
+    <h3>You have <%= booksFromDB.length %> books saved in your library</h3>
     <thead>
       <th>ID</th>
       <th>Author</th>
@@ -33,14 +36,15 @@
           <td><%= booksFromDB[i].author %></td>
           <td><%= booksFromDB[i].title %></td>
           <td><%= booksFromDB[i].isbn %></td>
-          <!-- added " " to image url -->
-          <td>"<%= booksFromDB[i].image_url %>"</td>
+          <!-- TODO: Why is image not showing?-->
+          <td><%= booksFromDB[i].image_url %></td>
           <td><%= booksFromDB[i].description %></td>
           <td><%= booksFromDB[i].bookshelf %></td>
         </tr>
         <% } %>
     </tbody>
   </table>
-  <!-- note from lab: the above for loop will end up in a partial -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+  <script src="app.js"></script> 
 </body>
 </html>

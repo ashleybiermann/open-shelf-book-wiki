@@ -4,15 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Book I Just Saved, only 1 showing</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/modules.css">
+  <title>Saved!</title>
 </head>
 <body>
-  <h1>I'm here!</h1>
+
+  <%- include('../../../views/partials/nav.ejs') %>
+
+  <h1>Saved to Bookshelf!</h1>
   <!-- using partial from /books/detail.ejs file -->
   <!-- ejs , path of partial , variable partial expects, variable sent from server that includes necessary info -->
   <%- include('detail.ejs', {current : oneSavedBook}) %>
-
-  <!-- TODO: issue with image rendering in browser -->
 
 </body>
 </html>

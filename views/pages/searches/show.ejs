@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Search Results</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/modules.css">
+  <title>Search Results</title>
 </head>
 <body>
-  <h3>Your personalized book results</h3>
+  <%- include('../../../views/partials/nav.ejs') %>
+
+  <h1>Your Results</h1>
+
   <ul>
     <% books.forEach(current => { %>
       <li> 
@@ -14,8 +21,8 @@
         <h2><%=current.title %></h2>
         <h3><%=current.author %></h3>
         <p><%=current.description %></p>
-        <p>isbn: <%=current.isbn %></p>
-        <p>bookshelf: <%=current.bookshelf %></p>
+        <h6>isbn: <%=current.isbn %></h6>
+        <h4>bookshelf: <%=current.bookshelf %></h4>
       </li>
 
       <form action="/books" method="POST">
@@ -33,6 +40,8 @@
       <% }) %>
     </ul>
     
+    <footer></footer>
+
   </body>
   </html>
   
