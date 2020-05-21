@@ -1,8 +1,19 @@
 * {
-  background: cadetblue;
+  background: rgb(228, 249, 250);
   outline: dotted 1px magenta;
 }
 
 h1 {
-  color: brown;
+  font-size: 40px;
+  color: rgb(30, 2, 66);
+}
+
+h2 {
+  font-size: 30px;
+  color: rgb(18, 1, 41);
+}
+
+h3 {
+  font-size: 24px;
+  color: rgb(18, 1, 41);
 }

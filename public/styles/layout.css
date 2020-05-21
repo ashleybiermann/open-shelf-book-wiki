@@ -2,6 +2,7 @@
   * {
     text-align: center;
   }
+
   body {
     display: grid;
     grid-template-columns: 35px 1fr 35px;
@@ -23,6 +24,16 @@
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
+  }
+
+  p {
+    margin-left: 10px;
+    text-align: left;
+  }
+
+  ul {
+    /* row start / column start / row end / column end */
+    grid-area: 3 / 1 / 4 / 4;
   }
 
   form {

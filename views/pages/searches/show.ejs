@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/modules.css">
   <title>Book Search Results</title>
 </head>
 <body>
-  <h3>Your Results</h3>
+  <nav></nav>
+
+  <h1>Your Results</h1>
+
   <ul>
     <% books.forEach(current => { %>
       <li> 
@@ -16,8 +21,8 @@
         <h2><%=current.title %></h2>
         <h3><%=current.author %></h3>
         <p><%=current.description %></p>
-        <p>isbn: <%=current.isbn %></p>
-        <p>bookshelf: <%=current.bookshelf %></p>
+        <h4>isbn: <%=current.isbn %></h4>
+        <h4>bookshelf: <%=current.bookshelf %></h4>
       </li>
 
       <form action="/books" method="POST">
@@ -35,6 +40,8 @@
       <% }) %>
     </ul>
     
+    <footer></footer>
+
   </body>
   </html>
   
