@@ -11,8 +11,7 @@
   <h4>bookshelf: <%=current.bookshelf %></h4>
 
   <button id="revealUpdateForm">Personalize This Book</button>
-<!-- TODO: make this dynamic with < % = current. id % > ... but it doesn't have an id  -->
-<!-- TODO: Should I just be sending them to view their book from the homepage?? -->
+
   <form id="formToUpdateBook" action="/books/<%= current.id %>/update?_overrideMethod=PUT" method="POST">
     <fieldset> 
       <label for="author">Author</label>
