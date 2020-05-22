@@ -12,7 +12,10 @@
     <input type="text" name="description" value="<%=current.description %>">
     <label for="bookshelf">Bookshelf</label>
     <input type="text" name="bookshelf" value="<%=current.bookshelf %>">
-    <!-- TODO: get this button doing something useful, will need the id first , though -->
-    <button type="submit">Update</button>
+    <button type="submit">Update Info</button>
   </fieldset>
+</form>
+
+<form id="formToDeleteBook" action="/books/<%= current.id %>/delete?_overrideMethod=PUT" method="POST"> 
+    <button id="deleteBook" type="submit">Remove this book from My Library</button>
 </form>

@@ -15,3 +15,8 @@ $('document').ready(() => {
     window.location.href = '/searches/new';
   });
 });
+
+// TODO: button that double checks that the user really wants to delete the book
+
+// $('#deleteBook').click;
+

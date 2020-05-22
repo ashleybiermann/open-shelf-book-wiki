@@ -32,6 +32,7 @@ app.post('/searches/new', searchBook);
 app.post('/books', saveBookToDB);
 app.get('/books/:id', retrieveSingleBook);
 app.put('/books/:id/update', updateBook);
+app.put('/books/:id/delete', deleteBook);
 
 // start the app
 app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));
@@ -102,12 +103,10 @@ function retreiveBooksFromDB(req, res){
 
 function saveBookToDB(req, res) {
   // TODO: If book already exists in DB, then don't put it in again
-  // console.log(req.body);
   const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id';
   const oneBookInfo = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
   client.query(saveToSql, oneBookInfo)
     .then (resultFromSql => {
-      console.log('about to send to /books/id');
       res.redirect('/books/' + resultFromSql.rows[0].id);
     })
     .catch(error => {
@@ -154,6 +153,17 @@ function updateBook(req, res) {
     });
 }
 
-// sql query that updates using the info from form (will live in the body) id will live in params
+function deleteBook(req, res) {
+  const id = req.params.id;
+  const deleteBook = `DELETE FROM booktable WHERE id=${id}`;
 
+  client.query(deleteBook)
+    .then(() => {
+      res.redirect(`/`);
+    })
+    .catch(error => {
+      res.render('pages/error', {'error': error});
+      console.error('error from deleting book: ', error);
+    });
+}
 
