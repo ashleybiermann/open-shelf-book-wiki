@@ -29,8 +29,13 @@ app.get('/searches/new', (req, res) => {
 });
 app.post('/searches/new', searchBook);
 
-app.get('/books/:id', retrieveSingleBook);
 app.post('/books', saveBookToDB);
+app.get('/books/:id', retrieveSingleBook);
+app.put('/books/:id/update', updateBook);
+app.put('/books/:id/delete', deleteBook);
+
+// start the app
+app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));
 
 // constructors
 function Book(obj) {
@@ -98,19 +103,12 @@ function retreiveBooksFromDB(req, res){
 
 function saveBookToDB(req, res) {
   // TODO: If book already exists in DB, then don't put it in again
-  console.log(req.body);
   const saveToSql = 'INSERT INTO booktable (author, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id';
-  //array with info from req.body
-  // TODO: WHY isn't this returing an id???
   const oneBookInfo = [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
   client.query(saveToSql, oneBookInfo)
     .then (resultFromSql => {
-      console.log('result from sql' + resultFromSql.rowCount);
-      console.log('object.entries: ' + Object.entries(resultFromSql));
-      res.render('pages/books/show', {'oneSavedBook': req.body});
-      // return resultFromSql;
+      res.redirect('/books/' + resultFromSql.rows[0].id);
     })
-    // .then(resultFromSql);
     .catch(error => {
       res.render('pages/error', {'error': error});
       console.error('error retrieving books from database: ', error);
@@ -118,8 +116,54 @@ function saveBookToDB(req, res) {
 }
 
 function retrieveSingleBook(req, res) {
-  //lab 12 card 2
+  const id = req.params.id;
+  const getOneBook = `SELECT * FROM booktable WHERE id=${id}`;
+  client.query(getOneBook)
+    .then(resultFromSql => {
+      const book = resultFromSql.rows[0];
+      res.render('pages/books/show', {'oneSavedBook': book});
+    })
+    .catch(error => {
+      res.render('pages/error', {'error': error});
+      console.error('error retrieving single book from db: ', error);
+    });
 }
 
-// start the app
-app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));
+// TODO: make a function to hold the error handler
+
+function updateBook(req, res) {
+  const id = req.params.id;
+  const values = [id, req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
+  const updateBook = `UPDATE booktable 
+  SET author=$2,
+  title=$3,
+  isbn=$4,
+  image_url=$5,
+  description=$6,
+  bookshelf=$7
+  WHERE id=$1`;
+
+  client.query(updateBook, values)
+    .then(() => {
+      res.redirect(`/books/${id}`);
+    })
+    .catch(error => {
+      res.render('pages/error', {'error': error});
+      console.error('error from updating book: ', error);
+    });
+}
+
+function deleteBook(req, res) {
+  const id = req.params.id;
+  const deleteBook = `DELETE FROM booktable WHERE id=${id}`;
+
+  client.query(deleteBook)
+    .then(() => {
+      res.redirect(`/`);
+    })
+    .catch(error => {
+      res.render('pages/error', {'error': error});
+      console.error('error from deleting book: ', error);
+    });
+}
+
