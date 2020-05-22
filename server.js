@@ -29,8 +29,9 @@ app.get('/searches/new', (req, res) => {
 });
 app.post('/searches/new', searchBook);
 
-app.get('/books/:id', retrieveSingleBook);
 app.post('/books', saveBookToDB);
+app.get('/books/:id', retrieveSingleBook);
+app.put('/books/:id/update', updateBook);
 
 // constructors
 function Book(obj) {
@@ -130,6 +131,11 @@ function retrieveSingleBook(req, res) {
 }
 
 // TODO: make a function to hold the error handler
+
+function updateBook(req, res) {
+  //TODO: this function
+}
+// sql query that updates using the info from form (will live in the body) id will live in params
 
 // start the app
 app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));

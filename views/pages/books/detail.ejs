@@ -1,5 +1,3 @@
-
-
   <!-- partial for /searches/show.ejs goes in here -->
   <!-- lets the user update the info in it. Then, a new button also shows up along with the unhidden form and lets the user submit the form -->
   <section>
@@ -12,26 +10,7 @@
 
   <button id="revealUpdateForm">Personalize This Book</button>
 
-  <form id="formToUpdateBook" action="/books/<%= current.id %>/update?_overrideMethod=PUT" method="POST">
-    <fieldset> 
-      <label for="author">Author</label>
-      <input type="text" name="author" value="<%=current.author %>">
-      <label for="title">Title</label>
-      <input type="text" name="title" value="<%=current.title %>">
-      <label for="isbn">ISBN</label>
-      <input type="text" name="isbn" value="<%=current.isbn %>">
-      <label for="image_url">Image URL</label>
-      <input type="text" name="image_url" value="<%=current.image_url %>">
-      <label for="description">Description</label>
-      <input type="text" name="description" value="<%=current.description %>">
-      <label for="bookshelf">Bookshelf</label>
-      <input type="text" name="bookshelf" value="<%=current.bookshelf %>">
-      <!-- TODO: get this button doing something useful, will need the id first , though -->
-      <button type="submit">Update</button>
-    </fieldset>
-  </form>
-  
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
-  <script src="app.js"></script>    
+  <%- include('../../../views/pages/books/edit.ejs') %>
+
 </section>
     
