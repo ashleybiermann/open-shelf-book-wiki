@@ -33,6 +33,9 @@ app.post('/books', saveBookToDB);
 app.get('/books/:id', retrieveSingleBook);
 app.put('/books/:id/update', updateBook);
 
+// start the app
+app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));
+
 // constructors
 function Book(obj) {
   this.title = obj.title ? obj.title : 'Book Title Unknown';
@@ -118,7 +121,6 @@ function retrieveSingleBook(req, res) {
   const getOneBook = `SELECT * FROM booktable WHERE id=${id}`;
   client.query(getOneBook)
     .then(resultFromSql => {
-      console.log(resultFromSql.rows[0]);
       const book = resultFromSql.rows[0];
       res.render('pages/books/show', {'oneSavedBook': book});
     })
@@ -126,16 +128,32 @@ function retrieveSingleBook(req, res) {
       res.render('pages/error', {'error': error});
       console.error('error retrieving single book from db: ', error);
     });
-
-  // all details views end up pointing to retrieve single book, from /books/:id
 }
 
 // TODO: make a function to hold the error handler
 
 function updateBook(req, res) {
-  //TODO: this function
+  const id = req.params.id;
+  const values = [id, req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description, req.body.bookshelf];
+  const updateBook = `UPDATE booktable 
+  SET author=$2,
+  title=$3,
+  isbn=$4,
+  image_url=$5,
+  description=$6,
+  bookshelf=$7
+  WHERE id=$1`;
+
+  client.query(updateBook, values)
+    .then(() => {
+      res.redirect(`/books/${id}`);
+    })
+    .catch(error => {
+      res.render('pages/error', {'error': error});
+      console.error('error from updating book: ', error);
+    });
 }
+
 // sql query that updates using the info from form (will live in the body) id will live in params
 
-// start the app
-app.listen(PORT, () => console.log(`app is up on port :  ${PORT}`));
+
